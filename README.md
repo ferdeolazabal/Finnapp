@@ -45,4 +45,19 @@ make dev
 
 Comandos útiles: `make back`, `make front`, `make db-up`, `make db-down`, `make test`, `make lint` y `make build`. `make env` crea `back/.env` desde el ejemplo sólo cuando todavía no existe.
 
+### Conexión opcional con IOL
+
+La aplicación arranca sin broker con `IOL_ENABLED=false`. Cuando IOL proporcione la URL y credenciales oficiales del sandbox, deben configurarse únicamente en `back/.env`:
+
+```dotenv
+IOL_ENABLED=true
+IOL_ENVIRONMENT=sandbox
+IOL_API_VERSION=v2
+IOL_BASE_URL=https://URL-OFICIAL-DEL-SANDBOX
+IOL_USERNAME=
+IOL_PASSWORD=
+```
+
+No compartas credenciales por chat ni las agregues al repositorio. Los bearer y refresh tokens serán obtenidos dinámicamente y permanecerán fuera del `.env`. La configuración rechaza deliberadamente el host productivo `api.invertironline.com` durante esta fase.
+
 Futuro documentado, no implementado: propuestas sin envío, paper trading sandbox, aprobación humana y automatización limitada con kill switch. El backtesting futuro contemplará costos, spread, slippage, dividendos, benchmark, fuera de muestra y sesgos look-ahead/survivorship; nunca será garantía de resultados.
