@@ -1,0 +1,30 @@
+generator client { provider = "prisma-client-js" }
+datasource db { provider = "postgresql"; url = env("DATABASE_URL") }
+model TradeJournalEntry {
+  id String @id @default(uuid())
+  symbol String
+  market String
+  occurredAt DateTime
+  side String
+  entryPrice Decimal @db.Decimal(24, 8)
+  exitPrice Decimal? @db.Decimal(24, 8)
+  quantity Decimal @db.Decimal(24, 8)
+  commissions Decimal @db.Decimal(24, 8)
+  grossPnL Decimal? @db.Decimal(24, 8)
+  netPnL Decimal? @db.Decimal(24, 8)
+  originalStop Decimal @db.Decimal(24, 8)
+  originalTarget Decimal @db.Decimal(24, 8)
+  entryRationale String
+  exitRationale String?
+  originalThesis String
+  invalidationCondition String
+  emotionalState String?
+  detectedErrors String[]
+  lessonsLearned String?
+  aiAnalysis String?
+  strategy String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([symbol, occurredAt])
+}
+
