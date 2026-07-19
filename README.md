@@ -7,6 +7,17 @@ Repositorio único con dos aplicaciones:
 
 El MVP es un auditor: no predice precios, no opera dinero real y no contiene herramientas de órdenes. Los valores de `EXAMPLE_RISK_RULES` son ejemplos configurables, no recomendaciones financieras.
 
+## Finalidad y alcance
+
+La aplicación está pensada para conectarse con tu cuenta de IOL, inicialmente sólo en modo lectura, para consultar:
+
+- Saldo disponible.
+- Cartera y posiciones.
+- Órdenes existentes.
+- Cotizaciones y datos históricos disponibles.
+
+Más adelante podrá incorporar paper trading, exclusivamente mediante el entorno sandbox de IOL. La aplicación no enviará operaciones reales durante el MVP.
+
 ## Arquitectura y supuestos
 
 Monolito modular con dominio puro, puertos y adaptadores. Dinero viaja como strings decimales y se calcula con `decimal.js`; todos los datos de mercado incluyen timestamp. Prisma/PostgreSQL persiste el diario. IOL quedará detrás de `BrokerProvider` y sólo usará sandbox. Se asumen cantidades enteras inicialmente y se rechazan datos vencidos, incompletos, órdenes de mercado y operaciones sin stop/target.
