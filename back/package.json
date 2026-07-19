@@ -2,6 +2,7 @@
   "name": "trading-ai-agent",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "npm@10.9.8",
   "type": "module",
   "engines": { "node": ">=22" },
   "scripts": {
