@@ -3,6 +3,7 @@ import { z } from 'zod';
 
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
+  PORT: z.coerce.number().int().min(1).max(65535).default(8089),
   DATABASE_URL: z.string().min(1),
   LOG_LEVEL: z.enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace']).default('info'),
   MARKET_DATA_MAX_AGE_SECONDS: z.coerce.number().int().positive().default(300),
@@ -13,4 +14,3 @@ const envSchema = z.object({
 });
 export type AppConfig = z.infer<typeof envSchema>;
 export const loadConfig = (source: NodeJS.ProcessEnv = process.env): AppConfig => envSchema.parse(source);
-

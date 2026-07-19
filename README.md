@@ -23,10 +23,15 @@ Monolito modular con dominio puro, puertos y adaptadores. Dinero viaja como stri
 
 ## Desarrollo
 
+Requiere Node.js 22, Docker y GNU Make (por ejemplo desde WSL, Git Bash o una instalación de Make para Windows).
+
 ```bash
-docker compose up -d
-cd back && copy .env.example .env && npm install && npx prisma generate && npm test
-cd ../front && npm install && npm run dev
+make setup
+make dev
 ```
+
+`make dev` levanta PostgreSQL, el backend en `http://localhost:8089` y Vite en `http://localhost:5173`. El backend usa `nodemon` y reinicia al cambiar archivos TypeScript. Su estado puede comprobarse en `GET http://localhost:8089/health`.
+
+Comandos útiles: `make back`, `make front`, `make db-up`, `make db-down`, `make test`, `make lint` y `make build`. `make env` crea `back/.env` desde el ejemplo sólo cuando todavía no existe.
 
 Futuro documentado, no implementado: propuestas sin envío, paper trading sandbox, aprobación humana y automatización limitada con kill switch. El backtesting futuro contemplará costos, spread, slippage, dividendos, benchmark, fuera de muestra y sesgos look-ahead/survivorship; nunca será garantía de resultados.
