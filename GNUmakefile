@@ -1,6 +1,8 @@
 include Makefile
 
-.PHONY: dev-down down
+.PHONY: up dev-down down
+
+up: dev
 
 dev-down:
 	@pattern='$(abspath .)/(back|front)/[n]ode_modules/'; \
